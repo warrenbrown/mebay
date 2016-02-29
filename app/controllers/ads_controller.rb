@@ -24,6 +24,29 @@ class AdsController < ApplicationController
     @ad = Ad.find(params[:id])
   end
 
+  def edit
+    @ad = Ad.find(params[:id])
+  end
+
+  def update
+    @ad = Ad.find(params[:id])
+    if @ad.update(ad_params)
+      flash[:notice] = 'Ad has been updated.'
+      redirect_to ad_path(@ad)
+    else
+      flash.now[:alert] = 'Ad has not been created.'
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @ad = Ad.find(params[:id])
+
+    @ad.destroy
+    flash[:notice] = 'Ad has been deleted.'
+    redirect_to ads_path
+  end
+
   private
 
   def ad_params
