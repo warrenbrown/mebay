@@ -1,0 +1,7 @@
+<h1>Listing Ads</h1>
+<ul>
+<% @ads.each do |ad| %>
+  <li><%=link_to ad.name, ad %></li>
+<% end %>
+</ul>
+<%= link_to 'New', new_ad_path %>
